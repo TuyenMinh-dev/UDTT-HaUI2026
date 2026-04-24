@@ -1,0 +1,2 @@
+1.Liệt kê tất cả các cách -> dùng chỉnh hợp 
+2.Tìm các tập con gồm k phần tử từ n phần tử -> dùng tổ hợp
