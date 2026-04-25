@@ -16,7 +16,7 @@ TaiSan d[20];
 bool used[20] = {false};
 int cach = 0;
 
-// Hàm in ra m?t cách s?p x?p
+// Hàm in ra mot cách sap xep
 void soCach() {
     cach++;
     cout << "Cach " << cach << ": ";
