@@ -6,7 +6,7 @@ void giamDan(int a[],int n){
 }
 
 bool coin_changing(int *a, int n, long m, int *c) {
-    // Kh?i t?o m?ng k?t qu?
+    // Khởi  tạo mảng kết quả
     for (int i = 0; i < n; ++i)
         c[i] = 0;
     int i = 0;
