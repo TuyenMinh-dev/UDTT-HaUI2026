@@ -1,0 +1,11 @@
+Các bài toán tiêu biểu cho chiến lược tham lam:
+1.Bài toán đổi tiền : có một số tiền là m và n loại tiền khác nhau , lựa chọn sao cho số lượng đồng tiền cần lấy là ít nhất hoặc nhiều nhất 
+2.Bài toán lập lịch:
+Sắp xếp các công việc theo thời gian kết thúc tăng dần , rồi lựa chọn : tức là công việc nào kết thúc ở thời điểm sớm hơn thì chọn trước
+3.Bài toán nối dây: nối dây sao cho chi phí cần bỏ ra để nối dây là nhỏ nhất , tiền phải trả ở mỗi bước là a[i-1]+a[i]
+Ở mỗi bước chọn, ta chọn ra 2 sợi dậy ngắn nhất trong dãy giá trị 
+-> sử dụng set(duy trì các phần tử luôn tăng dần -> việc xóa các phần tử ở mỗi bước sau khi chọn xong sẽ dễ dàng) và priority-queue(thao tác lựa chọn phần tử nhỏ cũng dễ dàng hơn)
+-> 1. sử dụng multiset 
+   2. sử dụng priority_queue(hàng đợi ưu tiên) : có các hàm là push(đẩy phần tử vào cái queue đấy , pop(xóa phần tử đầu , luôn là thằng max) , top(thằng đầu dãy), size(kích thước) , empty(kiểm tra rỗng) 
+priority_queue<int> Q : max heap ( mặc định)
+priority_queue<int, vector<int>,greater<int> > Q : min heap
