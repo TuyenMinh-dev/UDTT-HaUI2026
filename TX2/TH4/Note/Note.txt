@@ -9,3 +9,5 @@ Sắp xếp các công việc theo thời gian kết thúc tăng dần , rồi l
    2. sử dụng priority_queue(hàng đợi ưu tiên) : có các hàm là push(đẩy phần tử vào cái queue đấy , pop(xóa phần tử đầu , luôn là thằng max) , top(thằng đầu dãy), size(kích thước) , empty(kiểm tra rỗng) 
 priority_queue<int> Q : max heap ( mặc định)
 priority_queue<int, vector<int>,greater<int> > Q : min heap
+Lưu ý: -bài toán đổi một số tiền S dùng chiến lược tham lam khi bộ tiền đưa ra theo quy luật tiền tệ chuẩn(nghĩa là số sau phải gấp ít nhất 2 lần số trước): Vd:1,2,5,10,20 (O(nlogn)
+       -trong trường hợp mà bộ tiền được đưa ra không tuân theo quy luật trên mà được đưa ra một cách ngẫu nhiên-> buộc phải dùng Quy hoạch động  (O(n*S))
