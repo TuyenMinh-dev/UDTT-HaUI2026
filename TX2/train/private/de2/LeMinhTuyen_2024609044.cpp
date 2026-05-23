@@ -5,27 +5,37 @@ struct MT{
     int gb;
     int gia;
 };
-void G(int &p,int &n,vector<MT> d){
-    int slg=0;
-    int tien=0;
+struct KQG{
+    int u;
+    int m;
+};
+struct KQD{
+    int x;
+    vector<MT> a;
+};
+KQG G(int p,int n,vector<MT> d){
+    KQG kq;
+    kq.u=0;
+    kq.m=0;
     bool tim_thay=false;
     for(int i=0;i<n;i++){
-        slg++;
-        tien+=d[i].gia;
-        tim_thay=true;
-        if(tien>=p){
+        kq.u++;
+        kq.m+=d[i].gia;
+        if(kq.m>=p){
+            tim_thay=true;
             break;
+            
         }
     }
-    if(tim_thay){
-        cout<<"u = "<<slg<<endl;
-        cout<<"m = "<<tien<<endl;
+    // trong trường hợp chạy hết vòng lặp vẫn m<p 
+    if(!tim_thay){
+    kq.u=0;
+    kq.m=0;
     }
-    else{
-        cout<<"Khong co phuong an"<<endl;
-    }
+    return kq;
 }
-void D(int &y,int &n,vector<MT> d){
+
+KQD D(int y,int n,vector<MT> d){
     int dp[n+1][y+1];
     memset(dp,0,sizeof(dp));
     for(int i=1;i<=n;i++){
@@ -37,29 +47,44 @@ void D(int &y,int &n,vector<MT> d){
         }
     }
     int i=n;int j=y;
-    vector<string> a;
-    while(i>0){
+    KQD kq;  
+    while(i>0 && j>0){
         if(dp[i][j]!=dp[i-1][j]){
             j-=d[i-1].gb;
-            a.push_back(d[i-1].ten);
+            kq.a.push_back(d[i-1]);
         }
         i--;
-    }
-    int x=dp[n][y];
-    if(x>0){
-        cout<<"x = "<<x<<endl;
-        for(string y : a){
-            cout<<y<<" ";
-        }cout<<endl;
-    }
-    else{
-        cout<<"Khong co phuong an!"<<endl;
+    } 
+    reverse(kq.a.begin(),kq.a.end());
+    kq.x=dp[n][y];
+    return kq;   
+}
+void inDS(vector<MT> a){
+    for(int i=0;i<a.size();i++){
+        cout<<i+1<<". Hang: "<<a[i].ten
+            <<" | Dung luong: "<<a[i].gb<<" GB"
+            <<" | Gia ban: "<<a[i].gia<<" trieu dong\n";
     }
 }
-int main(){
-    int y=3000;
-    int p=80;
-    int n=6;
+void inKQ(KQG kqG,KQD kqD){
+    if(kqG.u>0){
+        cout<<"u = "<<kqG.u<<" may"<<endl;
+        cout<<"m = "<<kqG.m<<" trieu dong"<<endl;
+    }
+    else{
+        cout<<"Khong co phuong an"<<endl;
+    }
+    cout<<"-------------------------------------------------"<<endl;
+    if(kqD.x>0){
+        cout<<"x = "<<kqD.x<<endl;
+        cout<<"a: "<<endl;
+        inDS(kqD.a);
+    }
+    else{
+        cout<<"Khong co phuong an"<<endl;
+    }
+}
+int main(){  
     vector<MT> d= {
         {"A",2048,38},
         {"B",1024,25},
@@ -68,8 +93,11 @@ int main(){
         {"E",256,7},
         {"G",128,5}
     };
-    G(p,n,d);
-    cout<<"------------------------"<<endl;
-    D(y,n,d);
+    int y=3000;
+    int p=80;
+    int n=d.size();
+    KQG kqG = G(p,n,d);
+    KQD kqD = D(y,n,d);
+    inKQ(kqG,kqD);
     return 0;
 }
